@@ -5,7 +5,7 @@ import "./App.css";
 
 const API =
   import.meta.env.VITE_API_URL ||
-  `http://${window.location.hostname}:5000/api`;
+  "https://smartattend-backend-108w.onrender.com/api";
 
 const getToken = () => localStorage.getItem("token") || "";
 
