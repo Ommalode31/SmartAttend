@@ -110,13 +110,29 @@ router.get(
         try {
 
             const courses = await Course.find({
-                status: "active"
-            }).sort({
-               createdAt: -1
-          });
-            res.status(200).json({
-                courses
-            });
+    status: "active"
+})
+.sort({
+    createdAt: -1
+});
+
+const uniqueCourses = [];
+const seenCodes = new Set();
+
+for (const course of courses) {
+    const code = course.code?.trim().toUpperCase();
+
+    if (!code || seenCodes.has(code)) {
+        continue;
+    }
+
+    seenCodes.add(code);
+    uniqueCourses.push(course);
+}
+
+res.status(200).json({
+    courses: uniqueCourses
+});
 
         } catch (error) {
 
