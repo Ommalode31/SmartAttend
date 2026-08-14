@@ -59,23 +59,16 @@ router.post(
             // FIND COURSE + CHECK TRAINER
             // ==========================================
 
-            const course = await Course.findOne({
-                _id: courseId,
-                $or: [
-                    {
-                        trainerId: trainerId
-                    },
-                    {
-                        trainers: trainerId
-                    }
-                ]
-            });
+           const course = await Course.findOne({
+               _id: courseId,
+               status: "active"
+             });
 
 
             if (!course) {
                 return res.status(403).json({
                     message:
-                        "Course not found or trainer is not assigned to this course"
+                         "Course not found or inactive"
                 });
             }
 

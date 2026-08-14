@@ -110,18 +110,10 @@ router.get(
         try {
 
             const courses = await Course.find({
-                $or: [
-                    {
-                        trainerId: req.user.id
-                    },
-                    {
-                        trainers: req.user.id
-                    }
-                ]
+                status: "active"
             }).sort({
-                createdAt: -1
-            });
-
+               createdAt: -1
+          });
             res.status(200).json({
                 courses
             });
