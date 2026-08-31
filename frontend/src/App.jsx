@@ -4,7 +4,7 @@ import QRCode from "qrcode";
 import "./App.css";
 
 const API =
-  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_URL |
   "https://smartattend-backend-108w.onrender.com/api";
 
 const getToken = () => localStorage.getItem("token") || "";
